@@ -12,11 +12,6 @@ import React,{useState} from "react";
 export default function Item(props) {
   const [stock,setStock] = useState(props.stock);
 
-  const comprarProducto = () =>{
-    setStock(stock-1);
-    props.fnCarrito();
-  }
-
   return (
     <div className='producto'>
       <h3>
@@ -26,7 +21,7 @@ export default function Item(props) {
       {props.producto.descripcion}
       </p>
       <h5>En stock: <span>{stock>0?stock:'Agotado'}</span></h5>
-      <button onClick={()=>comprarProducto()} disabled={stock===0}>{stock>0?'COMPRAR':'SIN STOCK'}</button>
+      <button onClick={() =>{setStock(stock-1);props.fnCarrito();}} disabled={stock===0}>{stock>0?'COMPRAR':'SIN STOCK'}</button>
     </div>
   )
 }
